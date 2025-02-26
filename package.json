@@ -1,13 +1,16 @@
 {
   "name": "github-portfolio",
-  "description": "Portfolio of Abu Said - Github profile",
+  "homepage": "https://hwangtun.github.io/portfolio",
+  "description": "Vo Le Hoang Tan - Github profile",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out --nojekyll"
   },
   "dependencies": {
     "@next/third-parties": "^14.1.3",
@@ -22,6 +25,7 @@
     "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "gh-pages": "^6.3.0",
     "postcss": "latest",
     "sass": "^1.69.5",
     "tailwindcss": "latest"
