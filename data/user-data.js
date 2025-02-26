@@ -1,6 +1,6 @@
 export const userData = {
   githubUser: 'hwangtun',
-  devUsername: "Võ Lê Hoàng Tân",
+  devUsername: "hwangtun",
   github: 'https://github.com/hwangtun',
   facebook: 'https://web.facebook.com/hoangtan.vole/',
   linkedIn: 'https://www.linkedin.com/in/v%C3%B5-l%C3%AA-ho%C3%A0ng-t%C3%A2n-472918332/',
