@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_BASE_PATH: /hwangtun.github.io
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm cache verify
+
+      - name: Check Next.js Cache
+        run: |
+          npm run build
+          if [ ! -d ".next" ]; then
+            echo "Next.js build cache not found"
+            exit 1
+          fi
+
+      - name: Build
+        run: |
+          rm -rf out/
+          npm run build
+          touch out/.nojekyll
+          echo "hwangtun.github.io" > out/CNAME
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+          branch: gh-pages
+          clean: true
+          clean-exclude: |
+            .nojekyll
+            CNAME
